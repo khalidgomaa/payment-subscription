@@ -6,6 +6,10 @@
 
 ---
 
+## Postman Collection
+- جميع الـ APIs موجودة في **Postman Collection** داخل المشروع لتسهيل الاختبار والتكامل.
+https://github.com/khalidgomaa/payment-subscription/blob/main/Payment-subscription.postman_collection.json
+
 ## Architecture & Structure
 - **Repository Pattern:** لفصل منطق البيانات عن منطق الأعمال.  
 - **SOLID Principles:** مطبقة في جميع أجزاء المشروع لضمان صيانة سهلة وقابلية للتوسع.  
@@ -46,5 +50,3 @@
 
 ---
 
-## Postman Collection
-- جميع الـ APIs موجودة في **Postman Collection** داخل المشروع لتسهيل الاختبار والتكامل.
