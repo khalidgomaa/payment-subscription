@@ -17,13 +17,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $fillable = [
         'name',
         'email',
+        'is_admin',
         'password',
     ];
-
-    /**
+        protected $with = ['subscriptions','activeSubscription'];    /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
@@ -45,4 +46,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+        public function activeSubscription()
+        {
+            return $this->hasOne(Subscription::class)
+                ->ofMany('id', 'max')
+                ->where('status', 'active');
+        }
 }

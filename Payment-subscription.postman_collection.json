@@ -1,0 +1,966 @@
+{
+	"info": {
+		"_postman_id": "82c98d5f-0b0a-46bf-99ee-673de39e84ff",
+		"name": "Payment-subscription",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29231036",
+		"_collection_link": "https://mostaqline.postman.co/workspace/mostaqline-Workspace~32b78154-773d-4bee-892e-f7321860c427/collection/29231036-82c98d5f-0b0a-46bf-99ee-673de39e84ff?action=share&source=collection_link&creator=29231036"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Khaled\",\n    \"email\": \"Khaled@test.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Khaled\",\n    \"email\": \"Khaled@test.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/auth/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Dec 2025 01:13:06 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"http_code\": 201,\n    \"code\": 0,\n    \"message\": \"Created\",\n    \"data\": {\n        \"token\": \"1|pHMIMBZ2DkCXH8QDn4eYpX8P9ew6xFLO502rtOY8a0ff6c6c\"\n    },\n    \"meta\": []\n}"
+						},
+						{
+							"name": "already registered",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Khaled\",\n    \"email\": \"Khaled123@test.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/auth/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Dec 2025 20:00:47 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"http_code\": 422,\n    \"code\": 1,\n    \"message\": \"The email has already been taken.\",\n    \"data\": {\n        \"email\": [\n            \"The email has already been taken.\"\n        ]\n    },\n    \"meta\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"token\", pm.response.json().data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@test.com\",\n    \"password\": \"password\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"user@test.com\",\n    \"password\": \"password\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/auth/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Dec 2025 23:15:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"http_code\": 200,\n    \"code\": 0,\n    \"message\": \"OK\",\n    \"data\": {\n        \"token\": \"4|Q7oKSsuqHtNrQFxHL7TaNIkWPyx33VK755xrnyzK904052fb\"\n    },\n    \"meta\": []\n}"
+						},
+						{
+							"name": "Failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"Khaled@test.com\",\n    \"password\": \"password\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/auth/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Dec 2025 20:01:56 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"http_code\": 400,\n    \"code\": 1,\n    \"message\": \"invalid_credentials\",\n    \"data\": null,\n    \"meta\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "20|PjaNuhnDnMoygJ7VW6C9NYdUVD7PZuViwmZtjALD65137fa4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{url}}/auth/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "file",
+									"file": {}
+								},
+								"url": {
+									"raw": "{{url}}/auth/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Dec 2025 15:31:34 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"http_code\": 200,\n    \"code\": 0,\n    \"message\": \"Logged out successfully.\",\n    \"data\": null,\n    \"meta\": []\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Plan&& Subscription",
+			"item": [
+				{
+					"name": "plans",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/subscriptions/plans",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"subscriptions",
+										"plans"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "4|Q7oKSsuqHtNrQFxHL7TaNIkWPyx33VK755xrnyzK904052fb",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Dec 2025 01:14:14 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"http_code\": 200,\n    \"code\": 0,\n    \"message\": \"Available plans retrieved successfully\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Basic\",\n            \"description\": \"Basic plan with essential features.\",\n            \"price\": \"10.00\",\n            \"duration_days\": 30\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Pro\",\n            \"description\": \"Pro plan with advanced features.\",\n            \"price\": \"20.00\",\n            \"duration_days\": 30\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Premium\",\n            \"description\": \"Premium plan with all features.\",\n            \"price\": \"50.00\",\n            \"duration_days\": 30\n        }\n    ],\n    \"meta\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "purchase",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"plan_id\":\"2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/subscriptions/purchase",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"subscriptions",
+								"purchase"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"plan_id\":\"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/subscriptions/purchase",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"subscriptions",
+										"purchase"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Dec 2025 19:00:27 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"http_code\": 200,\n    \"code\": 0,\n    \"message\": \"Checkout session created successfully\",\n    \"data\": {\n        \"checkout_url\": \"https://checkout.stripe.com/c/pay/cs_test_a1nTc2Hn83qoQtNlNznJZkrDL6sZBknBCOhnQQBVWsDVv3namC4Fpiocna#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blpxYHZxWjA0VmFHQXVJZ21ySUhRNU9PT0ZDajAxVjJEVjZCS3JvM1ZEbzxhZm1KfVBhNWBUVGBJbGNVbEtBSTNETWMwMzVpcj12cjJEUmtDbUJ%2FUkJsUWJBanV3R0JqNTVSQFJoS0FPPScpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZjY2NjY2MnKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl\"\n    },\n    \"meta\": []\n}"
+						},
+						{
+							"name": "already  active subscription",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"plan_id\":\"3\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/subscriptions/purchase",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"subscriptions",
+										"purchase"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Dec 2025 19:59:56 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"http_code\": 400,\n    \"code\": 1,\n    \"message\": \"User already has an active subscription.\",\n    \"data\": null,\n    \"meta\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "current",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"plan_id\":\"1\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/subscriptions/current",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"subscriptions",
+								"current"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Suceess",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"plan_id\":\"1\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/subscriptions/current",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"subscriptions",
+										"current"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Dec 2025 19:57:54 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"http_code\": 200,\n    \"code\": 0,\n    \"message\": \"Current subscription status retrieved.\",\n    \"data\": {\n        \"status\": \"active\",\n        \"plan_name\": \"Pro\",\n        \"start_date\": \"2025-12-12T00:00:00.000000Z\",\n        \"end_date\": \"2026-01-11T00:00:00.000000Z\"\n    },\n    \"meta\": []\n}"
+						},
+						{
+							"name": "No active subscription",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"plan_id\":\"1\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/subscriptions/current",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"subscriptions",
+										"current"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Dec 2025 20:02:58 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"http_code\": 404,\n    \"code\": 1,\n    \"message\": \"No active subscription found.\",\n    \"data\": null,\n    \"meta\": []\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "List_Users",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/admin/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Dec 2025 20:39:10 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"http_code\": 200,\n    \"code\": 0,\n    \"message\": \"Available plans retrieved successfully\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Admin User\",\n            \"email\": \"admin@test.com\",\n            \"subscriptions\": [],\n            \"active_subscription\": null,\n            \"created_at\": \"2025-12-12 17:51:40\",\n            \"updated_at\": \"2025-12-12 17:51:40\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Khaled\",\n            \"email\": \"Khaled12@test.com\",\n            \"subscriptions\": [\n                {\n                    \"id\": 1,\n                    \"user_id\": 2,\n                    \"plan_id\": 1,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 17:52:07\",\n                    \"updated_at\": \"2025-12-12 17:52:07\"\n                },\n                {\n                    \"id\": 2,\n                    \"user_id\": 2,\n                    \"plan_id\": 1,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 18:54:08\",\n                    \"updated_at\": \"2025-12-12 18:54:08\"\n                },\n                {\n                    \"id\": 3,\n                    \"user_id\": 2,\n                    \"plan_id\": 1,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 18:55:01\",\n                    \"updated_at\": \"2025-12-12 18:55:01\"\n                },\n                {\n                    \"id\": 4,\n                    \"user_id\": 2,\n                    \"plan_id\": 1,\n                    \"payment_id\": \"cs_test_a1O8KfzBdzVNiRlyCtmBCpMUmVBUI1kPMQwvMpNC6v62OJQtPR6pYeNV1v\",\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 18:59:45\",\n                    \"updated_at\": \"2025-12-12 18:59:47\"\n                },\n                {\n                    \"id\": 5,\n                    \"user_id\": 2,\n                    \"plan_id\": 1,\n                    \"payment_id\": \"cs_test_a1nTc2Hn83qoQtNlNznJZkrDL6sZBknBCOhnQQBVWsDVv3namC4Fpiocna\",\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:00:26\",\n                    \"updated_at\": \"2025-12-12 19:00:27\"\n                },\n                {\n                    \"id\": 6,\n                    \"user_id\": 2,\n                    \"plan_id\": 2,\n                    \"payment_id\": \"cs_test_a1oO1BtX4VubrciKmBzFMUALLRbGI6t66Q94ov61cPssIFc7amIS9Bgq9p\",\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:15:51\",\n                    \"updated_at\": \"2025-12-12 19:15:52\"\n                },\n                {\n                    \"id\": 7,\n                    \"user_id\": 2,\n                    \"plan_id\": 2,\n                    \"payment_id\": \"cs_test_a1Noj6kvCturcWZLXV11I1qjgIaciqAuvCpMdHibpMIhqz45u0D622VdkH\",\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:20:16\",\n                    \"updated_at\": \"2025-12-12 19:20:17\"\n                },\n                {\n                    \"id\": 8,\n                    \"user_id\": 2,\n                    \"plan_id\": 2,\n                    \"payment_id\": \"cs_test_a1yP0PjpYeLZG5GtLgmZLkxwfsCMI1eRM2OjuGWIBSjphM8oHmet0NMxfP\",\n                    \"status\": \"active\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:29:42\",\n                    \"updated_at\": \"2025-12-12 19:30:18\"\n                }\n            ],\n            \"active_subscription\": {\n                \"id\": 8,\n                \"user_id\": 2,\n                \"plan_id\": 2,\n                \"payment_id\": \"cs_test_a1yP0PjpYeLZG5GtLgmZLkxwfsCMI1eRM2OjuGWIBSjphM8oHmet0NMxfP\",\n                \"status\": \"active\",\n                \"starts_at\": null,\n                \"ends_at\": null,\n                \"created_at\": \"2025-12-12 19:29:42\",\n                \"updated_at\": \"2025-12-12 19:30:18\"\n            },\n            \"created_at\": \"2025-12-12 17:51:50\",\n            \"updated_at\": \"2025-12-12 17:51:50\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Khaled\",\n            \"email\": \"Khaled123@test.com\",\n            \"subscriptions\": [\n                {\n                    \"id\": 9,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:38:00\",\n                    \"updated_at\": \"2025-12-12 19:38:00\"\n                },\n                {\n                    \"id\": 10,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:38:12\",\n                    \"updated_at\": \"2025-12-12 19:38:12\"\n                },\n                {\n                    \"id\": 11,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:38:17\",\n                    \"updated_at\": \"2025-12-12 19:38:17\"\n                },\n                {\n                    \"id\": 12,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:38:29\",\n                    \"updated_at\": \"2025-12-12 19:38:29\"\n                },\n                {\n                    \"id\": 13,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:38:32\",\n                    \"updated_at\": \"2025-12-12 19:38:32\"\n                },\n                {\n                    \"id\": 14,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:38:34\",\n                    \"updated_at\": \"2025-12-12 19:38:34\"\n                },\n                {\n                    \"id\": 15,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:39:57\",\n                    \"updated_at\": \"2025-12-12 19:39:57\"\n                },\n                {\n                    \"id\": 16,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:41:30\",\n                    \"updated_at\": \"2025-12-12 19:41:30\"\n                },\n                {\n                    \"id\": 17,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:41:53\",\n                    \"updated_at\": \"2025-12-12 19:41:53\"\n                },\n                {\n                    \"id\": 18,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:42:12\",\n                    \"updated_at\": \"2025-12-12 19:42:12\"\n                },\n                {\n                    \"id\": 19,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:42:15\",\n                    \"updated_at\": \"2025-12-12 19:42:15\"\n                },\n                {\n                    \"id\": 20,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:49:15\",\n                    \"updated_at\": \"2025-12-12 19:49:15\"\n                },\n                {\n                    \"id\": 21,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": \"cs_test_a1KFLwp0cIGQT0mBNd02J7UNk1f4gZap3kU5nfnek4GfpGeeES1Dsfs4oV\",\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:50:43\",\n                    \"updated_at\": \"2025-12-12 19:50:44\"\n                },\n                {\n                    \"id\": 22,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:51:22\",\n                    \"updated_at\": \"2025-12-12 19:51:22\"\n                },\n                {\n                    \"id\": 23,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": null,\n                    \"status\": \"pending\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:51:46\",\n                    \"updated_at\": \"2025-12-12 19:51:46\"\n                },\n                {\n                    \"id\": 24,\n                    \"user_id\": 3,\n                    \"plan_id\": 2,\n                    \"payment_id\": \"cs_test_a1LVpqOf5xVMmtpLVD92IpSrvz5DT7ca3CGeAYFqYiEUzUJGufQMk9tzXw\",\n                    \"status\": \"active\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 19:53:11\",\n                    \"updated_at\": \"2025-12-12 19:53:53\"\n                }\n            ],\n            \"active_subscription\": {\n                \"id\": 24,\n                \"user_id\": 3,\n                \"plan_id\": 2,\n                \"payment_id\": \"cs_test_a1LVpqOf5xVMmtpLVD92IpSrvz5DT7ca3CGeAYFqYiEUzUJGufQMk9tzXw\",\n                \"status\": \"active\",\n                \"starts_at\": null,\n                \"ends_at\": null,\n                \"created_at\": \"2025-12-12 19:53:11\",\n                \"updated_at\": \"2025-12-12 19:53:53\"\n            },\n            \"created_at\": \"2025-12-12 19:37:26\",\n            \"updated_at\": \"2025-12-12 19:37:26\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Khaled\",\n            \"email\": \"Khaled@test.com\",\n            \"subscriptions\": [\n                {\n                    \"id\": 25,\n                    \"user_id\": 4,\n                    \"plan_id\": 3,\n                    \"payment_id\": \"cs_test_a1AtGFfrag7h9n5xSigOwlwQ1XGc8TUrSedvLkqY67DPPtUravK2PsdovF\",\n                    \"status\": \"active\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 20:03:21\",\n                    \"updated_at\": \"2025-12-12 20:04:26\"\n                }\n            ],\n            \"active_subscription\": {\n                \"id\": 25,\n                \"user_id\": 4,\n                \"plan_id\": 3,\n                \"payment_id\": \"cs_test_a1AtGFfrag7h9n5xSigOwlwQ1XGc8TUrSedvLkqY67DPPtUravK2PsdovF\",\n                \"status\": \"active\",\n                \"starts_at\": null,\n                \"ends_at\": null,\n                \"created_at\": \"2025-12-12 20:03:21\",\n                \"updated_at\": \"2025-12-12 20:04:26\"\n            },\n            \"created_at\": \"2025-12-12 20:02:40\",\n            \"updated_at\": \"2025-12-12 20:02:40\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Khaled\",\n            \"email\": \"Khaledd@test.com\",\n            \"subscriptions\": [\n                {\n                    \"id\": 26,\n                    \"user_id\": 5,\n                    \"plan_id\": 3,\n                    \"payment_id\": \"cs_test_a1lmtx7VbvruwJWaV8NjaT7UKk7nlmHcy67lOziqWWxyWGEWQ83rQcNVYL\",\n                    \"status\": \"active\",\n                    \"starts_at\": null,\n                    \"ends_at\": null,\n                    \"created_at\": \"2025-12-12 20:07:24\",\n                    \"updated_at\": \"2025-12-12 20:07:56\"\n                }\n            ],\n            \"active_subscription\": {\n                \"id\": 26,\n                \"user_id\": 5,\n                \"plan_id\": 3,\n                \"payment_id\": \"cs_test_a1lmtx7VbvruwJWaV8NjaT7UKk7nlmHcy67lOziqWWxyWGEWQ83rQcNVYL\",\n                \"status\": \"active\",\n                \"starts_at\": null,\n                \"ends_at\": null,\n                \"created_at\": \"2025-12-12 20:07:24\",\n                \"updated_at\": \"2025-12-12 20:07:56\"\n            },\n            \"created_at\": \"2025-12-12 20:07:06\",\n            \"updated_at\": \"2025-12-12 20:07:06\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"khaled\",\n            \"email\": \"admin@gmail.com\",\n            \"subscriptions\": [],\n            \"active_subscription\": null,\n            \"created_at\": \"2025-12-12 20:24:51\",\n            \"updated_at\": \"2025-12-12 20:24:51\"\n        }\n    ],\n    \"meta\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Deactivate subscription",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/subscriptions/26/deactivate",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"subscriptions",
+										"26",
+										"deactivate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Dec 2025 20:48:18 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"http_code\": 200,\n    \"code\": 0,\n    \"message\": \"Subscription deactivated successfully.\",\n    \"data\": {\n        \"status\": \"canceled\"\n    },\n    \"meta\": []\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "9|nkCf53ykhDxnOH16CXafruYWt7KBT8AKtY795wkW49d6995a",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
